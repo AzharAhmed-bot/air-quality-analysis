@@ -1,5 +1,5 @@
 import { createAsyncThunk,createSlice } from "@reduxjs/toolkit";
-import { getLocations } from "../src/api/locations";
+import { getLocations } from "../src/api/api";
 import type {LocationProps} from "../src/types";
 
 

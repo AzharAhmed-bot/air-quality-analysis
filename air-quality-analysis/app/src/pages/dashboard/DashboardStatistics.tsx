@@ -20,10 +20,10 @@ function DashboardStatistics({ stats }: StatsProps) {
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold tracking-tight">
             <span className="text-primary">Your</span>{" "}
-            <span className="text-foreground">Statistics</span>
+            <span className="text-foreground">Sensor Statistics For the Country</span>
           </h2>
           <div className="font-mono text-xs text-muted-foreground">
-            TOTAL: <span className="text-foreground font-semibold">{stats.total}</span>
+            TOTAL: <span className="text-foreground font-semibold">{stats.total}</span> sensors
           </div>
         </div>
 

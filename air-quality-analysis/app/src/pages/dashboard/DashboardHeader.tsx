@@ -1,44 +1,17 @@
 import CornerElement from "../../components/CornerElement"
-import DashboardStatistics from "./DashboardStatistics"
 import type { LocationProps } from "../../types"
-import { useEffect, useState } from "react"
-import LocationPopUp from "./LocationPopUp"
 import Country from "./Country"
+import LocationPopUp from "./LocationPopUp"
 
-
-interface LocationComponentProps {
+interface DashboardHeaderProps {
   locations: LocationProps[]
   selectedCountry: string
   setSelectedCountry: (country: string) => void
+  filteredLocations: LocationProps[]
+  total: number
 }
-
-function DashboardHeader({
-  locations,
-  selectedCountry,
-  setSelectedCountry,
-}: LocationComponentProps) {
-  const [filteredLocations, setFilteredLocations] = useState<LocationProps[]>([])
-
-
-  useEffect(() => {
-    if (selectedCountry) {
-      const filtered: LocationProps[] = locations.filter(
-        (location: LocationProps) => location.country === selectedCountry
-      )
-      setFilteredLocations(filtered)
-    }
-  }, [locations, selectedCountry])
-
-  // === Aggregate Stats ===
-  const total = filteredLocations.length
-  const indoor = filteredLocations.filter((loc) => loc.indoor).length
-  const outdoor = total - indoor
-  const withTraffic = filteredLocations.filter((loc) => loc.traffic_in_area).length
-  const withIndustry = filteredLocations.filter((loc) => loc.industry_in_area).length
-  const withOven = filteredLocations.filter((loc) => loc.oven_in_area).length
-
+function DashboardHeader({locations, selectedCountry, setSelectedCountry, filteredLocations,total}: DashboardHeaderProps) {
   return (
-    <>
     <div className="relative backdrop-blur-sm border border-border p-6 rounded-lg">
       <CornerElement />
 
@@ -87,17 +60,6 @@ function DashboardHeader({
         </div>
       </div>
     </div>
-    <DashboardStatistics
-      stats={{
-        total,
-        indoor,
-        outdoor,
-        withTraffic,
-        withIndustry,
-        withOven,
-      }}
-    />
-    </>
   )
 }
 
