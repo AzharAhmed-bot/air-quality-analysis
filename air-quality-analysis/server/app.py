@@ -20,6 +20,7 @@ app.add_middleware(
 )
 
 
+
 @app.get('/locations')
 async def get_locations():
     url='http://api.sensors.africa/v2/locations/'
@@ -50,3 +51,5 @@ async def get_live_data():
         return response.json()
     else:
         return {"error": "Failed to fetch live data", "status_code": response.status_code}
+    
+
