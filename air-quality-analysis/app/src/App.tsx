@@ -11,7 +11,7 @@ import Dashboard from "./pages/dashboard/Dashboard"
 function App() {
   const dispatch = useDispatch<AppDispatch>()
   const locations = useSelector((state: RootState) => state.location.locations)
-  const liveData = useSelector((state: RootState) => state.liveData.data)
+  const liveData = useSelector((state: RootState) => state.liveData.liveData)
 
 
   useEffect(() => {

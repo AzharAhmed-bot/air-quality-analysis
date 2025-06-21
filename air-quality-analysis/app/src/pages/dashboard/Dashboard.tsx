@@ -55,10 +55,8 @@ function Dashboard({
       selectedCountry && (
         <>
         <SearchLocation
-          filteredLocations={filteredLocations.map((loc) => ({
-            ...loc,
-            id: String(loc.id),
-          }))}
+          filteredLocations={filteredLocations}
+          liveData={liveData}
         />
         
         </>
