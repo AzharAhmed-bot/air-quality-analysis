@@ -39,7 +39,7 @@ async def get_locations():
 
 @app.get('/now')
 async def get_live_data():
-    url='http://api.sensors.africa/v2/live/'
+    url='http://api.sensors.africa/v2/now/'
     cookies = {
         "csrftoken": "SokQeIlq97mpRNlU65M6L3o",
         "sessionid": "hsoksd6rlabl80thzf3givz5rnkgpkrm"

@@ -11,7 +11,7 @@ export const getLocations = async () => {
 
 export const getLiveData = async ()=>{
     try{
-        const res= await fetch('http://127.0.0.1:8000/locations')
+        const res= await fetch('http://127.0.0.1:8000/now')
         const data = await res.json();
         return data;
     
