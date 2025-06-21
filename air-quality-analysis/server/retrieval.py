@@ -4,7 +4,6 @@ import pandas as pd
 import asyncio
 from datetime import datetime
 
-# API endpoints
 API_URL = "http://api.sensors.africa/v2/data/"
 LOCATIONS_URL = "http://api.sensors.africa/v2/locations/"
 SENSOR_TYPES_URL = "http://api.sensors.africa/v2/sensor-types/"
@@ -82,7 +81,6 @@ def enrich_data(record, sensor_types, locations, sensors):
         "is_weekend": 1 if ts.dayofweek >= 5 else 0,
     }
 
-    # Flatten sensor readings
     for item in record.get("sensordatavalues", []):
         try:
             enriched[item["value_type"]] = float(item["value"])
@@ -114,7 +112,16 @@ async def retrieve_air_quality_data(country: Optional[str] = "Kenya",
 
     df = pd.DataFrame(enriched)
 
-    # Arrange columns: group sensor info next to sensor ID
+    # Ensure critical columns exist to avoid KeyError later
+    for col in ["humidity", "temperature", "P2", "P1", "P0"]:
+        if col not in df.columns:
+            df[col] = None
+
+    # Warn if key fields were missing in the dataset
+    missing_fields = [col for col in ["humidity", "temperature", "P2", "P1", "P0"] if df[col].isnull().all()]
+    if missing_fields:
+        print(f"⚠️ Warning: These columns have only missing values: {missing_fields}")
+
     col_order = [
         "id", "timestamp",
         "sensor", "sensor_public", "sensor_type_name", "sensor_manufacturer",
@@ -124,7 +131,6 @@ async def retrieve_air_quality_data(country: Optional[str] = "Kenya",
         "humidity", "temperature", "P2", "P1", "P0",
         "hour", "day_of_week", "is_weekend"
     ]
-    # Add any missing columns that appeared dynamically
     col_order += [c for c in df.columns if c not in col_order]
     df = df[col_order]
 
@@ -133,7 +139,5 @@ async def retrieve_air_quality_data(country: Optional[str] = "Kenya",
     print(f"✅ Saved {len(df)} rows to {filename}")
     return df
 
-# 🔽 Run script directly
 if __name__ == "__main__":
-    # Adjust country, location_id, and max_pages as needed
-    asyncio.run(retrieve_air_quality_data(country="Kenya", location_id=3967, max_pages=20))
+    asyncio.run(retrieve_air_quality_data(country='Kenya', max_pages=500))
