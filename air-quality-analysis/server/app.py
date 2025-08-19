@@ -25,8 +25,8 @@ app.add_middleware(
 async def get_locations():
     url='http://api.sensors.africa/v2/locations/'
     cookies = {
-        "csrftoken": "SokQeIlq97mpRNlU65M6L3o",
-        "sessionid": "hsoksd6rlabl80thzf3givz5rnkgpkrm"
+        "csrftoken": "8EnVVxdobu6GW6MakHCiGtIN4G4Fj2DJyGAruU7xGOmFhjJhGdfBp9Xl5OqfYRNC",
+        "sessionid": "lo9dlnsl9sbby7ftratvc1wihgtw24l6"
     }
     async with httpx.AsyncClient() as client:
         response = await client.get(url, cookies=cookies)
@@ -41,8 +41,8 @@ async def get_locations():
 async def get_live_data():
     url='http://api.sensors.africa/v2/now/'
     cookies = {
-        "csrftoken": "SokQeIlq97mpRNlU65M6L3o",
-        "sessionid": "hsoksd6rlabl80thzf3givz5rnkgpkrm"
+        "csrftoken": "8EnVVxdobu6GW6MakHCiGtIN4G4Fj2DJyGAruU7xGOmFhjJhGdfBp9Xl5OqfYRNC",
+        "sessionid": "lo9dlnsl9sbby7ftratvc1wihgtw24l6"
     }
     async with httpx.AsyncClient() as client:
         response = await client.get(url, cookies=cookies)
