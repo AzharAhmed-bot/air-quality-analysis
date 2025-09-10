@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import { fetchLocations } from "../redux/locationSlicer"
 import { fetchLiveData } from "../redux/liveDataSlicer"
 import { useDispatch, useSelector } from "react-redux"
+import AirQualityMap from "./components/common/AirQualityMap"
 import type { AppDispatch, RootState } from "../redux/store"
 import Dashboard from "./pages/dashboard/Dashboard"
 
@@ -25,6 +26,8 @@ function App() {
   return (
     <>
       <Dashboard locations={locations} liveData={liveData}/>
+      <AirQualityMap/>
+
     </>
   )
 }

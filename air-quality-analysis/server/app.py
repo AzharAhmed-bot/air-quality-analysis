@@ -25,8 +25,8 @@ app.add_middleware(
 async def get_locations():
     url='http://api.sensors.africa/v2/locations/'
     cookies = {
-        "csrftoken": "8EnVVxdobu6GW6MakHCiGtIN4G4Fj2DJyGAruU7xGOmFhjJhGdfBp9Xl5OqfYRNC",
-        "sessionid": "lo9dlnsl9sbby7ftratvc1wihgtw24l6"
+        "csrftoken": "guPCWQUdaqqIfuAcBuQ0QHFmC83cTMFxE28B4oLdhhAFOBOYv7OklJOI2B4bID5v",
+        "sessionid": "iiv03hdqphfumar35hjeb2m5ydt5orng"
     }
     async with httpx.AsyncClient() as client:
         response = await client.get(url, cookies=cookies)
@@ -41,11 +41,12 @@ async def get_locations():
 async def get_live_data():
     url='http://api.sensors.africa/v2/now/'
     cookies = {
-        "csrftoken": "8EnVVxdobu6GW6MakHCiGtIN4G4Fj2DJyGAruU7xGOmFhjJhGdfBp9Xl5OqfYRNC",
-        "sessionid": "lo9dlnsl9sbby7ftratvc1wihgtw24l6"
+        "csrftoken": "guPCWQUdaqqIfuAcBuQ0QHFmC83cTMFxE28B4oLdhhAFOBOYv7OklJOI2B4bID5v",
+        "sessionid": "iiv03hdqphfumar35hjeb2m5ydt5orng"
     }
     async with httpx.AsyncClient() as client:
         response = await client.get(url, cookies=cookies)
+        print(response)
     
     if response.status_code == 200:
         return response.json()
