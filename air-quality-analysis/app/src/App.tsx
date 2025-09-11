@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <Dashboard locations={locations} liveData={liveData}/>
-      <AirQualityMap/>
+      <AirQualityMap liveData={liveData}/>
 
     </>
   )
